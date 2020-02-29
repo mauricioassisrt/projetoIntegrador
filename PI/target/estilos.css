@@ -1,0 +1,16 @@
+.menuSistema{
+    margin: 0 auto;
+    width: 80%;
+    height: 1000px;
+
+}
+.cabecalho{
+    margin: 0 auto;
+    width: 50%;
+    height: 100px;
+}
+
+.ui-widget, .ui-widget .ui-widget {    
+    font-size: 90% !important;
+}
+

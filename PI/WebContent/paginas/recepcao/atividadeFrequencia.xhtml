@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<link type="text/css" rel="stylesheet"
+		href="#{request.contextPath}/css/default.css" />
+	<link type="text/css" rel="stylesheet"
+		href="#{request.contextPath}/css/syntaxhighlighter.css" />
+</h:head>
+<h:body>
+	<ui:composition template="/resources/template/template.xhtml">
+		<ui:define name="menu">
+			<ui:include src="/resources/template/menuRecepcao.xhtml" />
+		</ui:define>
+		<ui:define name="corpo">
+			<p:outputPanel id="pnAtividade">
+				<h:form id="frmAtividade">
+					<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+					
+					<div align="center" class="panel panel-default" >
+					<div class="panel-heading">Filtro da chamada</div>
+						<p:panelGrid columns="3">
+							<p:outputLabel for="atividade" value="Titulo da atividade: " />
+							<p:autoComplete id="atividade"
+								value="#{atividadeFrequenciaMB.atividadeSelecionada}"
+								completeMethod="#{atividadeFrequenciaMB.completaAtividade}"
+								var="atividade" itemLabel="#{atividade.titulo}"
+								forceSelection="true" dropdown="true" itemValue="#{atividade}"
+								converter="atividadeConverter">
+								<p:ajax event="itemSelect" update=":pnAtividade" listener="#{atividadeFrequenciaMB.gerarListaFrequencia}" />
+							</p:autoComplete>
+							<p:outputLabel value=""/>
+							<p:outputLabel for="nomeParticipante" value="Pesquisar pelo nome do participante: " rendered="#{atividadeFrequenciaMB.atividadeValida}"/>
+							<p:inputText id="nomeParticipante" value="#{atividadeFrequenciaMB.nomeParticipanteFiltro}" rendered="#{atividadeFrequenciaMB.atividadeValida}"/>
+							<p:commandButton value="Pesquisar" rendered="#{atividadeFrequenciaMB.atividadeValida}" actionListener="#{atividadeFrequenciaMB.filtrarListaParticipante}" update=":pnAtividade"/>
+						</p:panelGrid>
+					</div>
+
+					<h:dataTable id="dtListaFrequencia" var="obj" styleClass="table"
+						value="#{atividadeFrequenciaMB.listaParticipante}"
+						emptyMessage="Sem registros cadastrados" paginator="true"
+						paginatorPosition="bottom" rows="10" rendered="#{atividadeFrequenciaMB.atividadeValida}"
+						tableStyle="table-layout: auto">
+						<f:facet name="header">
+							<h2 style="text-align: center">Lista de presença</h2>
+						</f:facet>
+						<p:column headerText="Nome do participante">
+							<f:facet name="header">
+								<h:outputText value="Nome do participante" />
+							</f:facet>
+							<h:outputText value="#{obj.pessoa.nome}" />
+						</p:column>
+						<p:column headerText="Status de participanção">
+							<f:facet name="header">
+								<h:outputText value="Status de participanção" />
+							</f:facet>
+							<h:outputText
+								value="#{(obj.frequencia) ? 'Presente' : 'não Compareceu'}" />
+						</p:column>
+						<p:column headerText="Alterar status de participação" width="5%">
+							<f:facet name="header">
+								<h:outputText value="Alterar status de participação" />
+							</f:facet>
+							<p:commandButton 
+								value="Alterar" styleClass="btn btn-success" update="@form"
+								actionListener="#{atividadeFrequenciaMB.alterarFrequencia(obj)}">
+								<p:confirm header="#{(!obj.frequencia) ? 'Confirmar presença' : 'Cencelar presença'}"
+								message="Confirmo que o participante #{obj.pessoa.nome}#{(!obj.frequencia) ? ' esta presente' : ' não compareceu'}" />
+							</p:commandButton>
+						</p:column>
+					</h:dataTable>
+					
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="Confirma" type="button" styleClass="ui-confirmdialog-yes"/>
+						<p:commandButton value="Cancela" type="button" styleClass="ui-confirmdialog-no"/>
+					</p:confirmDialog>
+				</h:form>
+			</p:outputPanel>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//BR" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</h:head>
+<h:body>
+<div class="cabecalho">
+<center>
+          <div class="jumbotron" style="width:74%; margin: auto 0;">
+                <center>
+                    <img src="http://reitoria.ifpr.edu.br/wp-content/themes/ifet_1.2/images/ifpr_logo.png"/>
+                </center>
+               
+            </div>
+             
+            </center>
+</div>
+	<div class="container" >
+		<div class="navbar-wrapper">
+				<nav class="navbar breadcrumb navbar-static-top">
+					<div id="navbar">
+						<ui:insert name="menu"/>
+					</div>
+				</nav>
+		</div>
+		<ui:insert name="corpo"></ui:insert>
+		
+	</div>
+	<ui:insert name="dialog"/>
+	<center>
+
+<div class="jumbotron" style="width:76%;  margin: auto 0; ">
+		<img src="http://www.portalguaira.com/wp-content/uploads/2014/05/IFPR.png" height="90px" />
+	<br/>
+	<p style="text-align: center; font-size: 18px">
+	
+	Endereço  Rua José Felipe Tequinha 1400 
+	 Bairro Jardim das Nações   
+	 Cep: 87703-536 - Paranavaí PR 
+	 Fone: (44) 3482-0110
+	</p>
+		
+	</div>
+		</center>
+</h:body>
+</html>
+

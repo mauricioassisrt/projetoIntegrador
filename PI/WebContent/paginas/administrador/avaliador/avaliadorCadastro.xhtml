@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<div align="center">
+	
+		<legend style="font-size: 20px; width: 500px">Cadastro de Avaliador
+		<h:panelGrid columns="2">
+			<p:outputLabel for="nome" value="Nome: " />
+			<p:inputText id="nome" value="#{avaliadorMB.pessoa.nome}" required="true"/>
+			<p:outputLabel for="cpf" value="CPF: " />
+			<p:inputMask mask="999.999.999-99" id="cpf" value="#{avaliadorMB.pessoa.cpf}" required="true" validator="cpfValidator" />
+			<p:outputLabel  value="Data de nascimento: " />
+			<p:calendar pattern="dd/MM/yyyy" mask="true" value="#{avaliadorMB.pessoa.dtNasc}" required="true"/>
+			<p:outputLabel for="email" value="E-mail: " />
+			<p:inputText id="email" value="#{avaliadorMB.pessoa.email}" required="true"/>
+			<p:outputLabel for="telefone" value="Telefone: " />
+			<p:inputMask mask="(99)9999-99999" id="telefone" value="#{avaliadorMB.pessoa.telefone}"  required="true" />
+			<p:outputLabel for="pwd1" value="Senha: *" />
+	        <p:password id="pwd1" value="#{avaliadorMB.pessoa.senha}" match="pwd2"  required="true" requiredMessage="Senha Obrigatoria" />
+
+	        <p:outputLabel for="pwd2" value="Confirmar Senha:" />
+	        <p:password id="pwd2" value="#{avaliadorMB.pessoa.senha}"  required="true"  requiredMessage="Senha Obrigatoria"/>
+			
+			
+			 <p:outputLabel for="segmento" value="Segmento: " />
+			<p:autoComplete id="segmento" value="#{avaliadorMB.pessoa.segmento}" completeMethod="#{avaliadorMB.completaSegmento}"
+                                            var="segmento" itemLabel="#{segmento.descricao}" itemValue="#{segmento}" converter="segmentoConverter" 
+                                            forceSelection="true" dropdown="true" required="true" requiredMessage="Campo obrigatorio" />
+		</h:panelGrid>
+		
+		<p:commandButton value="Salvar" actionListener="#{avaliadorMB.salvarAlterar}" update=":pnListaAvaliador :pnCadastroAvaliador :pnBotoes" >
+			<f:setPropertyActionListener value="false" target="#{avaliadorMB.frmCadastro}" />
+			<f:setPropertyActionListener value="true" target="#{avaliadorMB.frmLista}" />
+		</p:commandButton>
+</legend></div>
+</html>
+

@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<div align="center">
+	<fieldset>
+		<legend>Cadastro de Avaliador de Atividade</legend>
+		<h:panelGrid columns="2">
+			
+			<p:outputLabel for="atividade" value="Atividade: " />
+			<p:autoComplete id="atividade" value="#{atividadeAvaliadorMB.atividadeAvaliador.atividade}" completeMethod="#{atividadeMB.completaAtividade}" 
+			    var="atividade" itemLabel="#{atividade.titulo}" itemValue="#{atividade}" converter="atividadeConverter" 
+			    forceSelection="true" dropdown="true" required="true"/>
+			
+			<p:outputLabel for="avaliador" value="Avaliador: " />
+			<p:autoComplete id="avaliador" value="#{atividadeAvaliadorMB.atividadeAvaliador.pessoa}" completeMethod="#{avaliadorMB.completaAvaliador}" 
+			    var="pessoa" itemLabel="#{pessoa.nome}" itemValue="#{pessoa}" converter="pessoaConverter" 
+			    forceSelection="true" dropdown="true" required="true"/>
+
+		</h:panelGrid>
+		<p:commandButton value="Salvar" actionListener="#{atividadeAvaliadorMB.salvarAlterar}" update=":pnListaAtividadeAvaliador :pnCadastroAtividadeAvaliador :pnBotoes">
+			<f:setPropertyActionListener value="false" target="#{atividadeAvaliadorMB.frmCadastro}" />
+			<f:setPropertyActionListener value="true" target="#{atividadeAvaliadorMB.frmLista}" />
+		</p:commandButton>
+	</fieldset>
+</div>
+</html>
+

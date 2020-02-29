@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<div align="center">
+	
+		<legend style="font-size: 20px; width: 400px">
+		Cadastro de TipoAtividade
+		
+		<h:panelGrid columns="2">
+			
+			<p:outputLabel for="descricao" value="Descricao: " />
+			<p:inputText id="descricao" value="#{tipoAtividadeMB.tipoAtividade.descricao}" required="true" />
+		</h:panelGrid>
+		<p:commandButton value="Salvar"  actionListener="#{tipoAtividadeMB.salvarAlterar}" update=":pnListaTipoAtividade :pnCadastroTipoAtividade :pnBotoes">
+			<f:setPropertyActionListener value="false" target="#{tipoAtividadeMB.frmCadastro}" />
+			<f:setPropertyActionListener value="true" target="#{tipoAtividadeMB.frmLista}" />
+		</p:commandButton>
+</legend>
+
+</div>
+</html>
+

@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<p:confirmDialog global="true">
+	<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+	<p:commandButton value="Nao" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+</p:confirmDialog>
+
+<p:dialog widgetVar="msgSucesso" modal="true" appendTo="@(body)" closable="true">
+	<div align="center">
+	    <p:panelGrid columns="1">
+		    <h:outputText value="Registro alterado com sucesso" />
+		    <p:commandButton update=":pnListaAtividade :pnCadastroAtividade :pnBotoes" value="Ok" oncomplete="PF('msgSucesso').hide()">
+		    	<f:setPropertyActionListener value="false" target="#{atividadeMB.frmCadastro}" />
+				<f:setPropertyActionListener value="true" target="#{atividadeMB.frmLista}" />
+		    </p:commandButton>
+    	</p:panelGrid>
+	</div>
+</p:dialog> 
+
+</html>
+

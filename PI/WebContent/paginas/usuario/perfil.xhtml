@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:body>
+	<ui:composition template="/resources/template/template.xhtml">
+		<ui:define name="titulo">Editar perfil</ui:define>
+		<ui:define name="menu">
+			<ui:include src="/resources/template/menuUsuario.xhtml" />
+		</ui:define>
+		<ui:define name="corpo">
+	<center>
+				<center style="width: 30%; margin: auto 0;">						
+					<h1>Editar Perfil</h1>
+						<h:form id="form">
+							<h:panelGrid columns="2">
+								<p:outputLabel for="nome" value="Nome: " />
+								<p:inputText id="nome" value="#{eventoFiltro.pess.nome}" required="true" />
+								<p:outputLabel for="cpf" value="CPF: " />
+								<p:inputMask mask="999.999.999-99" id="cpf" value="#{eventoFiltro.pess.cpf}" required="true" />
+								<p:outputLabel for="dtNasc" value="Data de nascimento: " />
+								<p:calendar pattern="dd-MM-yyyy" mask="true" id="dtNasc" value="#{eventoFiltro.pess.dtNasc}" required="true" />
+								<p:outputLabel for="email" value="E-mail: " />
+								<p:inputText id="email" value="#{eventoFiltro.pess.email}" required="true" />
+								<p:outputLabel for="telefone" value="Telefone: " />
+								<p:inputMask mask="(99)9999-9999" id="telefone" value="#{eventoFiltro.pess.telefone}" required="true" />
+
+								<p:outputLabel for="pwd1" value="Senha: *" />
+								<p:password id="pwd1" value="#{eventoFiltro.pess.senha}" match="pwd2" required="true" />
+
+								<p:outputLabel for="pwd2" value="Confirmar Senha:" />
+								<p:password id="pwd2" value="#{eventoFiltro.pess.senha}" required="true" />
+
+								
+							</h:panelGrid>
+							<p:commandButton value="Salvar" action="#{eventoFiltro.alterarUsuario()}" styleClass="btn btn-success" update=":form" style="width:100%;" />
+						</h:form>
+				</center>
+</center>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

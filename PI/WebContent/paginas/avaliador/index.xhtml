@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition template="/resources/template/template.xhtml">
+		<ui:define name="menu">
+			<ui:include src="/resources/template/menuAvaliador.xhtml" />
+		</ui:define>
+		<ui:define name="corpo">
+		<p:growl id="msg" sticky="true" showDetail="true" life="5000"/>
+			<h:form id="frmListaSubmissao">
+				<h:dataTable id="dtAtividade" var="obj" styleClass="table"
+					value="#{indexAvaliadorMB.listaSubmissoes}" paginator="true"
+					paginatorPosition="bottom" rows="10">
+					<f:facet name="header">
+						<h2 style="text-align: center">Submissoes</h2>
+					</f:facet>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Titulo do artigo" />
+						</f:facet>
+						<h:outputText value="#{obj.submissao.tituloTrabalho}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Autor principal" />
+						</f:facet>
+						<h:outputText value="#{obj.submissao.pessoa.nome}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Status da submissão" />
+						</f:facet>
+						<h:outputText
+							value="#{obj.parecer}"/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Avaliar" />
+						</f:facet>
+						<p:commandButton
+							styleClass="btn btn-success"
+							disabled="#{(obj.parecer != 'Aguardando')? true : false}" value=""
+							oncomplete="PF('submissao').show()" update=":frmDialog">
+							<f:setPropertyActionListener value="#{obj}" target="#{indexAvaliadorMB.submissaoSelecionada}" />
+						</p:commandButton>
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</ui:define>
+
+		<ui:define name="dialog">
+				<p:dialog header="Avaliação da Submissão" widgetVar="submissao" width="50%"
+					resizable="false" closable="true" modal="true">
+					<h:form id="frmDialog">
+					<p:panelGrid columns="2" style="width:100%;">
+						<p:outputLabel value="Nome do Artigo: " />
+						<p:outputLabel value="#{indexAvaliadorMB.submissaoSelecionada.submissao.tituloTrabalho}" />
+						<p:outputLabel value="Autor Principal: " />
+						<p:outputLabel value="#{indexAvaliadorMB.submissaoSelecionada.submissao.pessoa.nome}" />
+						<p:outputLabel value="Donwload do Artigo: " />
+						<p:commandButton value="Baixar artigo" ajax="false" icon="ui-icon-arrowthick-1-s"
+							onclick="PrimeFaces.monitorDownload(start, stop);" oncomplete="atualiza()">
+					        <p:fileDownload value="#{indexAvaliadorMB.artigo}"/>
+					    </p:commandButton>
+						<p:outputLabel value="Observações"/>
+						<p:inputTextarea rows="6" cols="33" value="#{indexAvaliadorMB.submissaoSelecionada.comentario}"/>
+						<p:outputLabel value="Parecer"/>
+						<p:selectOneMenu id="etapa" value="#{indexAvaliadorMB.submissaoSelecionada.parecer}" 
+							style="width:190px;">
+				            <f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+				            <f:selectItem itemLabel="Aprovado" itemValue="Aprovado"/>
+							<f:selectItem itemLabel="Reprovado" itemValue="Reprovado" />
+			        	</p:selectOneMenu>
+					</p:panelGrid>
+					<p:commandButton value="Avaliar" style="width:100%;" update="msg"
+						actionListener="#{indexAvaliadorMB.avaliarSubmissao}"
+						oncomplete="if (!args.validationFailed) PF('msgSucesso').show()"/>
+					</h:form>
+				</p:dialog>
+			
+			
+			<p:dialog modal="true" widgetVar="statusDialog" header="Status" 
+				draggable="false" closable="false" resizable="false" width="20%">
+			    <p:outputLabel value="Baixando o artigo"/>
+			</p:dialog>
+			<p:dialog modal="true" widgetVar="msgSucesso" 
+				draggable="false" closable="false" resizable="false" width="20%">
+				<div align="center">
+					<p:panelGrid columns="1">
+					    <p:outputLabel value="Artigo avaliado com sucesso"/>
+					    <p:commandButton update=":frmListaSubmissao" value="Ok" actionListener="#{indexAvaliadorMB.listar}" 
+					    	oncomplete="PF('msgSucesso').hide()" onclick="PF('submissao').hide()">
+							<f:setPropertyActionListener value="false" target="#{indexAvaliadorMB.statusAvaliacao}" />
+					    </p:commandButton>
+			    	</p:panelGrid>
+				</div>
+			</p:dialog>
+			
+			<script type="text/javascript">
+				function start() {
+				    PF('statusDialog').show();
+				}
+				function stop() {
+				    PF('statusDialog').hide();
+				    update;
+				}
+			</script>
+			
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
+

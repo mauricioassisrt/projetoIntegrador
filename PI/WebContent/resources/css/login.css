@@ -1,0 +1,16 @@
+.corpo {
+	background-color: #eee;
+}
+.input-login {
+	height: 60px !important;
+	font: italic;
+	font-family: monospace;
+}
+.alert {
+	width: 100%;
+	font-style: bold !important;
+	font-size: 25px !important;
+}
+.alert-danger {
+	background-color: #dca7a7 !important;
+}

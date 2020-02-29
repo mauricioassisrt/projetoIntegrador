@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:body>
+	<ui:composition template="/resources/template/template.xhtml">
+		<ui:define name="titulo">Editar perfil</ui:define>
+		<ui:define name="menu">
+			<ui:include src="/resources/template/menuUsuario.xhtml" />
+		</ui:define>
+		<ui:define name="corpo">
+		<center>
+				<center style="width: 30%; margin: auto 0;">				
+					<h1>Dados Pessoais </h1>
+					<hr/>
+						<h:form id="form" >
+							<h:panelGrid columns="2" >
+								<p:outputLabel  value="Nome: " />
+								<p:outputLabel value="#{eventoFiltro.pess.nome}" />
+								<p:outputLabel value="CPF: " />
+								<p:outputLabel  value="#{eventoFiltro.pess.cpf}"  />
+								
+								<p:outputLabel  value="E-mail: " />
+								<p:outputLabel  value="#{eventoFiltro.pess.email}"  />
+								<p:outputLabel  value="Telefone: " />
+								<p:outputLabel  value="#{eventoFiltro.pess.telefone}"  />
+
+								
+								
+							</h:panelGrid>
+							<hr/>
+							<p:commandButton value="Alterar Meus dados " action="perfil.jsf" styleClass="btn btn-success" update=":form" style="width:100%;" />
+						</h:form>
+				</center>
+</center>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

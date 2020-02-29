@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<p:dataTable id="dtUsuariosistema" var="obj"
+	value="#{usuarioMB.listaPessoa}"
+	emptyMessage="Sem registros cadastrados" paginator="true"
+	paginatorPosition="bottom" rows="10">
+	<f:facet name="header">
+                            Usuariosistema Cadastrados
+                        </f:facet>
+	<p:column headerText="Nome">
+		<h:outputText id="nome" value="#{obj.nome}" />
+	</p:column>
+	<p:column headerText="Data de Nascimento">
+		<h:outputText id="dtNasc" value="#{obj.dtNasc}">
+			<f:convertDateTime pattern="dd/MM/yyyy" />
+		</h:outputText>
+	</p:column>
+	<p:column headerText="E-mail">
+		<h:outputText id="email" value="#{obj.email}" />
+	</p:column>
+	<p:column headerText="Telefone">
+		<h:outputText id="telefone" value="#{obj.telefone}" />
+	</p:column>
+
+	<!-- 	BOTAO ALTERAR -->
+	<p:column width="5%">
+		<p:commandButton id="btAltera" icon="ui-icon-arrowrefresh-1-w"
+			update=":pnCadastroUsuarioSistema :pnListaUsuarioSistema :pnBotoes">
+			<f:setPropertyActionListener value="#{obj}"
+				target="#{usuarioMB.pessoa}" />
+			<f:setPropertyActionListener value="true"
+				target="#{usuarioMB.frmCadastro}" />
+			<f:setPropertyActionListener value="false"
+				target="#{usuarioMB.frmLista}" />
+		</p:commandButton>
+	</p:column>
+
+	<!-- 	BOTAO EXCLUIR -->
+	<p:column width="5%">
+		<p:column width="5%">
+			<p:commandButton id="btExclui"
+				actionListener="#{usuarioMB.excluir(obj)}"
+				icon="ui-icon-trash" update=":frmListaUsuarioSistema">
+				<p:confirm header="Confirmar" message="Deseja realmente excluir?"
+					icon="ui-icon-info" />
+			</p:commandButton>
+		</p:column>
+	</p:column>
+</p:dataTable>
+</html>
+

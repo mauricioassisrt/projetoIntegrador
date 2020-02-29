@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:form>
+	<p:menubar>
+		<p:menuitem value=" Home " url="/paginas/administrador/index.jsf" />
+		<p:menuitem value=" Meus dados " url="/paginas/administrador/exibeDadosAdministrador.jsf" onclick="#{eventoFiltro.pegaPessoa()}"/>
+		<p:submenu label=" Cadastros ">
+			<p:menuitem value="Local" url="/paginas/administrador/local/local.jsf" />
+			<p:menuitem value="Segmento" url="/paginas/administrador/segmento/segmento.jsf" />
+			<p:menuitem value="Tipo Atividade" url="/paginas/administrador/tipoAtividade/tipoAtividade.jsf" />
+			<p:menuitem value="Usuario do Sistema" url="/paginas/administrador/usuarioSistema/usuarioSistema.jsf" />
+			<p:menuitem value="Atividade" url="/paginas/administrador/atividade/atividade.jsf" />
+			<p:menuitem value="Avaliador" url="/paginas/administrador/avaliador/avaliador.jsf" />
+			<p:menuitem value="Avaliador da Atividade" url="/paginas/administrador/atividadeAvaliador/atividadeAvaliador.jsf" />
+		</p:submenu>
+		<p:submenu label=" Relatório ">
+			<p:menuitem value="Lista de Presença" url="/paginas/administrador/imprimeListaParticipante.jsf"/>
+		</p:submenu>
+		<p:menuitem value=" Logout " url="/j_spring_security_logout" />
+	</p:menubar>
+</h:form>
+</html>

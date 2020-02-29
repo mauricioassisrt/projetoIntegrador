@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:body>
+	<ui:composition template="/resources/template/template.xhtml">
+		<ui:define name="titulo">Cadastro de participante</ui:define>
+
+		<ui:define name="head">
+			<script
+				src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+				integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+				crossorigin="anonymous"></script>
+		</ui:define>
+
+		<ui:define name="menu">
+			<ui:include src="resources/template/menuPadrao.xhtml" />
+		</ui:define>
+
+		<ui:define name="corpo">
+
+			<div class="container" align="center">
+				<img src="img/parti.jpg" />
+				<h1>Cadastro de Participante</h1>
+				<p>Preencha seus dados logo abaixo</p>
+				<div class="container-dentro" style="max-width: 960px">
+					<h:form id="form">
+
+						<div class="form-group col-xs-12 col-md-12">
+							<p:outputLabel for="nome" value="Nome: " />
+							<p:inputText id="nome" value="#{participanteMB.pessoa.nome}"
+								required="true" styleClass="form-control" />
+						</div>
+						<div class="form-group col-xs-12 col-md-4">
+							<p:outputLabel for="cpf" value="CPF: " />
+							<p:inputMask mask="999.999.999-99" id="cpf"
+								validator="cpfValidator" value="#{participanteMB.pessoa.cpf}"
+								required="true" styleClass="form-control" />
+						</div>
+
+						<div class="form-group col-xs-12 col-md-4">
+
+							<p:outputLabel for="dtNasc" value="Data de nascimento: " />
+							<p:calendar id="dtNasc" pattern="dd/MM/yyyy" mask="true"
+								value="#{participanteMB.pessoa.dtNasc}" showOn="button" />
+
+						</div>
+
+						<div class="form-group col-xs-12 col-md-4">
+							<p:outputLabel for="email" value="E-mail: " />
+							<p:inputText id="email" value="#{participanteMB.pessoa.email}"
+								required="true" styleClass="form-control" />
+						</div>
+
+						<div class="form-group col-xs-12 col-md-4">
+							<p:outputLabel for="telefone" value="Telefone: " />
+							<p:inputMask mask="(99)9999-9999" id="telefone"
+								value="#{participanteMB.pessoa.telefone}" required="true"
+								styleClass="form-control" />
+						</div>
+
+						<div class="form-group col-xs-12 col-md-4">
+							<p:outputLabel for="pwd1" value="Senha: *" />
+							<p:password id="pwd1" value="#{participanteMB.pessoa.senha}"
+								match="pwd2" required="true" styleClass="form-control" />
+						</div>
+
+						<div class="form-group col-xs-12 col-md-4">
+							<p:outputLabel for="pwd2" value="Confirmar Senha:" />
+							<p:password id="pwd2" value="#{participanteMB.pessoa.senha}"
+								required="true" styleClass="form-control" />
+						</div>
+
+						<div class="form-group col-xs-12 col-md-12">
+							<p:commandButton value="Salvar"
+								actionListener="#{participanteMB.cadastrarParticipante()}"
+								action="#{participanteMB.novoRegistro()}"
+								styleClass="btn btn-success" update=":form" />
+						</div>
+					</h:form>
+				</div>
+			</div>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

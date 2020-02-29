@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//BR" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>B0DYBUILDER</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<style>
+.ui-widget-content {
+	border: none;
+}
+
+.ui-widget {
+	font-size: 15px;
+}
+</style>
+<link rel="stylesheet"
+		href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script
+		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</h:head>
+
+<h:body>
+	<p:layout fullPage="true">
+		<p:layoutUnit position="north" size="100" resizable="false">
+			<center>
+				<img
+					src="http://reitoria.ifpr.edu.br/wp-content/themes/ifet_1.2/images/ifpr_logo.png"
+					width="200px" />
+
+			</center>
+			<hr />
+		</p:layoutUnit>
+		<p:layoutUnit position="south" size="100" closable="true"
+			collapsible="true">
+			<div style="text-align: center;"></div>
+		</p:layoutUnit>
+		<p:layoutUnit position="west" header="Painel Administrativo "
+			collapsible="false" style="min-width:16.5%;">
+			<h:form>
+				<p:panelMenu style="width:300px">
+
+					<p:submenu label="Minha conta">
+						<p:menuitem value="Home" url="/pages/indexAdmin.jsf" />
+						<p:menuitem value="Meus dados" url="/pages/dadosAdministrador.jsf"
+							actionListener="#{eventoFiltro.pegaPessoa()}" />
+						<p:menuitem value="Logout" url="/j_spring_security_logout" />
+
+					</p:submenu>
+				</p:panelMenu>
+				<p:panelMenu style="width:300px">
+
+					<p:submenu label="Cadastros">
+						<p:menuitem value="Local" url="/pages/local/local.jsf" />
+						<p:menuitem value="Segmento" url="/pages/segmento/segmento.jsf" />
+						<p:menuitem value="Tipo Atividade"
+							url="/pages/tipoAtividade/tipoAtividade.jsf" />
+						<p:menuitem value="Usuario do Sistema"
+							url="/pages/usuarioSistema/usuarioSistema.jsf" />
+						<p:menuitem value="Atividade" url="/pages/atividade/atividade.jsf" />
+						<p:menuitem value="Avaliador" url="/pages/avaliador/avaliador.jsf" />
+						<p:menuitem value="Avaliador da Atividade"
+							url="/pages/atividadeAvaliador/atividadeAvaliador.jsf" />
+
+					</p:submenu>
+					<p:submenu label="Relatório">
+						<p:menuitem value="Certificados" url="#" />
+						<p:menuitem value="Lista de Atividade" url="#" />
+						<p:menuitem value="Lista de Participantes" url="#" />
+					</p:submenu>
+				</p:panelMenu>
+
+
+			</h:form>
+			<ui:insert name="menu"></ui:insert>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center">
+			<ui:insert name="corpo"></ui:insert>
+		</p:layoutUnit>
+
+	</p:layout>
+</h:body>
+</html>

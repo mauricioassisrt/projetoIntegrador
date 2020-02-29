@@ -1,0 +1,71 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<div align="center">
+<p:growl id="messages" sticky="true" showDetail="true" life="5000"/> 
+	
+		<legend >
+		<h3>Cadastro de Atividade</h3>
+		<h:panelGrid columns="2">
+			
+			<p:outputLabel for="atividade" value="Atividade Pai: " />
+			<p:autoComplete id="atividade" value="#{atividadeMB.atividade.atividade}" completeMethod="#{atividadeMB.completaAtividade}"
+                                            var="atividade" itemLabel="#{atividade.titulo}" itemValue="#{atividade}" converter="atividadeConverter" 
+                                            forceSelection="true" dropdown="true" />
+			
+			
+			<p:outputLabel for="titulo" value="Titulo: " />
+			<p:inputText id="titulo" value="#{atividadeMB.atividade.titulo}" required="true" requiredMessage="Campo obrigatorio"/>
+			
+			<p:outputLabel for="informacao" value="Informacao: " />
+			<p:inputText id="informacao" value="#{atividadeMB.atividade.informacao}" required="true" requiredMessage="Campo obrigatorio"/>
+			
+			<p:outputLabel  value="Vagas: " />
+			 <p:inputText value="#{atividadeMB.atividade.vagas}"  required="true"/>
+			 
+			<p:outputLabel for="dtInicio" value="Data de inicio: " />
+			<p:calendar id="dtInicio" value="#{atividadeMB.atividade.dtInicio}" pattern="dd/MM/yyyy HH:mm:ss" required="true" requiredMessage="Campo obrigatorio">
+			</p:calendar>
+			
+			
+			<p:outputLabel for="dtTermino" value="Data final: " />
+			<p:calendar id="dtTermino" value="#{atividadeMB.atividade.dtTermino}" pattern="dd/MM/yyyy HH:mm:ss" required="true" requiredMessage="Campo obrigatorio"/>
+			
+			<p:outputLabel for="dtLimiteInscricao" value="Data Limite de Inscrica: " />
+			<p:calendar id="dtLimiteInscricao" value="#{atividadeMB.atividade.dtLimiteInscricao}" pattern="dd/MM/yyyy" mask="true" showOn="button" required="true" requiredMessage="Campo obrigatorio" />
+			
+			<p:outputLabel for="dtLimiteSubmissao" value="Data Limite de Submissçao: " />
+			<p:calendar id="dtLimiteSubmissao" value="#{atividadeMB.atividade.dtLimiteSubmissao}" pattern="dd/MM/yyyy" mask="true" showOn="button" required="true" requiredMessage="Campo obrigatorio" />
+			
+			<p:outputLabel for="dtLimiteRevisao" value="Data Limite de Revisão: " />
+			<p:calendar id="dtLimiteRevisao" value="#{atividadeMB.atividade.dtLimiteRevisao}" pattern="dd/MM/yyyy" mask="true" showOn="button" required="true" requiredMessage="Campo obrigatorio" />
+			
+			<p:outputLabel for="cargaHoraria" value="Carga Horaria: " />
+			<p:inputText id="cargaHoraria" value="#{atividadeMB.atividade.cargaHoraria}" required="true" requiredMessage="Campo obrigatorio"/>
+			
+			<p:outputLabel for="segmento" value="Segmento: " />
+			<p:autoComplete id="segmento" value="#{atividadeMB.atividade.segmento}" completeMethod="#{atividadeMB.completaSegmento}"
+                                            var="segmento" itemLabel="#{segmento.descricao}" itemValue="#{segmento}" converter="segmentoConverter" 
+                                            forceSelection="true" dropdown="true" required="true" requiredMessage="Campo obrigatorio" />
+			
+			<p:outputLabel for="tipoAtividade" value="Tipo Atividade: " />
+			<p:autoComplete id="tipoAtividade" value="#{atividadeMB.atividade.tipoAtividade}" completeMethod="#{atividadeMB.completaTipoAtividade}"
+                                            var="tipoAtividade" itemLabel="#{tipoAtividade.descricao}" itemValue="#{tipoAtividade}" converter="tipoAtividadeConverter" 
+                                            forceSelection="true" dropdown="true" required="true" requiredMessage="Campo obrigatorio" />
+			
+			<p:outputLabel for="local" value="Local: " />
+			<p:autoComplete id="local" value="#{atividadeMB.atividade.local}" completeMethod="#{atividadeMB.completaLocal}"
+                                            var="local" itemLabel="#{local.descricao}" itemValue="#{local}" converter="localConverter" 
+                                            forceSelection="true" dropdown="true" required="true" requiredMessage="Campo obrigatorio" />
+			
+			
+		</h:panelGrid>
+		<p:commandButton value="Salvar" actionListener="#{atividadeMB.salvarAlterar}" update=":frmCadastroAtividade:messages"
+		oncomplete="if (!args.validationFailed) PF('msgSucesso').show()"/>
+</legend>
+</div>
+</html>
+

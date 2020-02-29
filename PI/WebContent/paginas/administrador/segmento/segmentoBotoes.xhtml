@@ -1,0 +1,23 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<div align="center">
+	<h:panelGrid columns="4" style="margin:10px 0">
+		<p:outputLabel for="pesquisa" value="Pesquisar: " style="font-weight:bold" />
+		<p:inputText id="pesquisa" disabled="#{segmentoMB.frmCadastro}" value="#{segmentoMB.pesquisa}" size="50" />
+		<p:commandButton disabled="#{segmentoMB.frmCadastro}" value="Pesquisa" icon="ui-icon-refresh" />
+		<p:commandButton value="Novo Segmento " rendered="#{segmentoMB.frmLista}" update=":pnCadastroSegmento :pnListaSegmento :pnBotoes" actionListener="#{segmentoMB.novoRegistro}">
+			<f:setPropertyActionListener value="true" target="#{segmentoMB.frmCadastro}" />
+			<f:setPropertyActionListener value="false" target="#{segmentoMB.frmLista}" />
+		</p:commandButton>
+		<p:commandButton value="Voltar" rendered="#{segmentoMB.frmCadastro}" update=":pnCadastroSegmento :pnListaSegmento :pnBotoes">
+			<f:setPropertyActionListener value="false" target="#{segmentoMB.frmCadastro}" />
+			<f:setPropertyActionListener value="true" target="#{segmentoMB.frmLista}" />
+		</p:commandButton>
+	</h:panelGrid>
+</div>
+</html>
+

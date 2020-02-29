@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/resources/template/template.xhtml">
+<ui:define name="menu">
+	<ui:include src="/resources/template/menuAdministrador.xhtml" />
+</ui:define>
+	<ui:define name="corpo">
+
+<!-- PAGINA DE BOTOES DE PESQUISA E NOVO -->
+		<p:outputPanel id="pnBotoes">
+			<h:form id="frmBotoes">
+				<ui:include src="usuarioSistemaBotoes.xhtml" />
+			</h:form>
+
+		</p:outputPanel>
+		<!-- 	PAGINA DE LISTA E PESQUISA -->
+		<p:outputPanel id="pnListaUsuarioSistema">
+			<h:form id="frmListaUsuarioSistema" rendered="#{usuarioMB.frmLista}">
+				<ui:include src="usuarioSistemaLista.xhtml" />
+			</h:form>
+		</p:outputPanel>
+
+<!-- PAGINA DE CADASTRO -->
+		<p:outputPanel id="pnCadastroUsuarioSistema">
+			<h:form id="frmCadastroUsuarioSistema" rendered="#{usuarioMB.frmCadastro}">
+				<ui:include src="usuarioSistemaCadastro.xhtml" />
+			</h:form>
+		</p:outputPanel>
+
+<!-- INCLUDE DE DIALOG -->
+		<ui:include src="usuarioSistemaDialog.xhtml" />
+	</ui:define>
+</ui:composition>
+</html>
+

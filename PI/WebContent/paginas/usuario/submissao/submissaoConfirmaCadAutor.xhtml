@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:body>
+	<ui:composition template="/resources/template/template.xhtml">
+		<ui:define name="titulo">Cadastro de Submissão</ui:define>
+		<ui:define name="menu">
+			<ui:include src="/resources/template/menuUsuario.xhtml" />
+		</ui:define>
+		<ui:define name="corpo">
+
+		<h:form id="frmConfirmAutor">
+			<div align="center">
+				<fieldset>
+
+					<legend><h2>Adicionar mais Autores ?</h2></legend>
+					<h:panelGrid id="tableAutorConfirma" columns="2" tableStyle="table-layout: auto"  >
+					
+						<p:column>
+							<p:commandButton value="Sim" action="submissaoCadastroAutor" styleClass="btn btn-success" />
+						</p:column>
+
+						<p:column>
+							<p:commandButton value="Não" actionListener="#{submissaoMB.iniciaMB}" action="submissao" styleClass="btn btn-success">
+							</p:commandButton>
+						</p:column>
+
+					</h:panelGrid>
+			
+				</fieldset>
+			</div>
+		</h:form>
+
+	</ui:define>
+	</ui:composition>
+</h:body>
+</html>

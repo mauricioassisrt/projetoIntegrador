@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<p:dataTable id="dtAvaliador" var="obj" value="#{avaliadorMB.listaPessoa}" emptyMessage="Sem registros cadastrados" paginator="true" paginatorPosition="bottom" rows="10">
+	<f:facet name="header">
+       Avaliador Cadastrados
+     </f:facet>
+	<p:column headerText="Codigo">
+		<h:outputText id="id" value="#{obj.id}" />
+	</p:column>
+	<p:column headerText="Nome">
+		<h:outputText id="nome" value="#{obj.nome}" />
+	</p:column>
+	<p:column headerText="CPF">
+		<h:outputText id="cpf" value="#{obj.cpf}" />
+	</p:column>
+	<p:column headerText="Data de nascimento">
+		<h:outputText id="dtNasc" value="#{obj.dtNasc}" >
+		<f:convertDateTime pattern="dd/MM/yyyy" />
+		</h:outputText>
+	</p:column>
+	<p:column headerText="E-mail">
+		<h:outputText id="email" value="#{obj.email}" />
+	</p:column>
+	<p:column headerText="Telefone">
+		<h:outputText id="telefone" value="#{obj.telefone}" />
+	</p:column>
+	<p:column headerText="Senha">
+		<h:outputText id="senha" value="#{obj.senha}" />
+	</p:column>
+	<p:column headerText="Segmento">
+		<h:outputText id="segmento" value="#{obj.segmento.descricao}" />
+	</p:column>
+
+	<!-- 	BOTAO ALTERAR -->
+	<p:column width="5%">
+		<p:commandButton id="btAltera" icon="ui-icon-arrowrefresh-1-w" update=":pnCadastroAvaliador :pnListaAvaliador :pnBotoes">
+			<f:setPropertyActionListener value="#{obj}" target="#{avaliadorMB.pessoa}" />
+			<f:setPropertyActionListener value="true" target="#{avaliadorMB.frmCadastro}" />
+			<f:setPropertyActionListener value="false" target="#{avaliadorMB.frmLista}" />
+		</p:commandButton>
+	</p:column>
+
+	<!-- 	BOTAO EXCLUIR -->
+	<p:column width="5%">
+		<p:column width="5%">
+			<p:commandButton id="btExclui" actionListener="#{avaliadorMB.excluir(obj)}" icon="ui-icon-trash" update=":frmListaAvaliador">
+				<p:confirm header="Confirmar" message="Deseja realmente excluir?" icon="ui-icon-info" />
+			</p:commandButton>
+		</p:column>
+	</p:column>
+</p:dataTable>
+</html>
+

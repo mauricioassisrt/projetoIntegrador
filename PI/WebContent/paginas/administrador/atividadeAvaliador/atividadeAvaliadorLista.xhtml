@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<p:dataTable id="dtAtividadeAvaliador" var="obj" value="#{atividadeAvaliadorMB.listaAtividadeAvaliador}" emptyMessage="Sem registros cadastrados" paginator="true" paginatorPosition="bottom" rows="10" tableStyle="table-layout: auto">
+	<f:facet name="header">
+       AtividadeAvaliador Cadastrados
+     </f:facet>
+	<p:column headerText="Codigo">
+		<h:outputText id="id" value="#{obj.id}" />
+	</p:column>
+	<p:column headerText="Atividade">
+		<h:outputText id="atividade" value="#{obj.atividade.titulo}" />
+	</p:column>
+	<p:column headerText="Avaliador">
+		<h:outputText id="avaliador" value="#{obj.pessoa.nome}" />
+	</p:column>
+
+	<!-- 	BOTAO ALTERAR -->
+	<p:column width="5%">
+		<p:commandButton id="btAltera" icon="ui-icon-arrowrefresh-1-w" update=":pnCadastroAtividadeAvaliador :pnListaAtividadeAvaliador :pnBotoes">
+			<f:setPropertyActionListener value="#{obj}" target="#{atividadeAvaliadorMB.atividadeAvaliador}" />
+			<f:setPropertyActionListener value="true" target="#{atividadeAvaliadorMB.frmCadastro}" />
+			<f:setPropertyActionListener value="false" target="#{atividadeAvaliadorMB.frmLista}" />
+		</p:commandButton>
+	</p:column>
+
+	<!-- 	BOTAO EXCLUIR -->
+	<p:column width="5%">
+		<p:column width="5%">
+			<p:commandButton id="btExclui" actionListener="#{atividadeAvaliadorMB.excluir(obj)}" icon="ui-icon-trash" update=":frmListaAtividadeAvaliador">
+				<p:confirm header="Confirmar" message="Deseja realmente excluir?" icon="ui-icon-info" />
+			</p:commandButton>
+		</p:column>
+	</p:column>
+</p:dataTable>
+</html>
+

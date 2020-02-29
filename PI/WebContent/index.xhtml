@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:body>
+	<ui:composition template="/resources/template/template.xhtml">
+		<ui:define name="titulo">Inicio</ui:define>
+		
+		<ui:define name="head">
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+			<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		</ui:define>
+		
+		<ui:define name="menu">
+			<ui:include src="resources/template/menuPadrao.xhtml" />
+		</ui:define>
+		
+		<ui:define name="corpo">
+		
+			<div id="myCarousel" class="carousel slide" data-ride="carousel"
+				style="width:100%; margin: auto">
+				<!-- Indicators -->
+				<ol class="carousel-indicators">
+					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+					<li data-target="#myCarousel" data-slide-to="1"></li>
+					<li data-target="#myCarousel" data-slide-to="2"></li>
+					<li data-target="#myCarousel" data-slide-to="3"></li>
+				</ol>
+
+				
+				<!-- Wrapper for slides -->
+			<center>
+				<div id="carousel-example-generic" class="carousel slide"
+					data-ride="carousel" style="height: 100%" >
+					<!-- Indicators -->
+					<ol class="carousel-indicators">
+						<li data-target="#carousel-example-generic" data-slide-to="0"
+							class="active"></li>
+						<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+						<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+					</ol>
+
+					<!-- Wrapper for slides -->
+					<div class="carousel-inner" role="listbox"
+						style="height: 300px; width:800px; margin: auto;">
+						<div class="item active">
+							<img src="img/ban.jpg" alt="..."  width="100%" height="100%"/>
+							<div class="carousel-caption">...</div>
+						</div>
+						<div class="item">
+							<img
+								src="http://static.wixstatic.com/media/585ba3_57c287fe89ea414f85e14776853b50f3~mv2.jpg/v1/fill/w_626,h_311/585ba3_57c287fe89ea414f85e14776853b50f3~mv2.jpg"
+								alt="..." width="100%" height="100%"/>
+							<div class="carousel-caption"></div>
+						</div>
+						<div class="item">
+							<img
+								src="http://paranavai.ifpr.edu.br/wp-content/uploads/2014/11/SETIF41.png"
+								alt="..."  width="100%" height="100%"/>
+							<div class="carousel-caption"></div>
+							<hr />
+						</div>
+
+
+
+					</div>
+
+					<!-- Controls -->
+					<a class="left carousel-control" href="#carousel-example-generic"
+						role="button" data-slide="prev"> <span
+						class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a> <a class="right carousel-control" href="#carousel-example-generic"
+						role="button" data-slide="next"> <span
+						class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+
+				</div>
+				</center>
+
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
+

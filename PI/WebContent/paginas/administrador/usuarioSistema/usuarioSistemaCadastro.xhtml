@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<div align="center">
+	<fieldset>
+		<legend>Cadastro de UsuarioSistema</legend>
+		<p:growl autoUpdate="true" showDetail="false" life="5000"/>
+		<p:panelGrid columns="2">
+			<p:outputLabel for="id" value="Código: " />
+            <p:inputText id="id" value="#{usuarioMB.pessoa.id}" disabled="true" />
+            <p:outputLabel for="nome" value="Nome: " />
+            <p:inputText id="nome" value="#{usuarioMB.pessoa.nome}" required="true" requiredMessage="Nome é obrigatorio"/>
+            <p:outputLabel for="cpf" value="CPF: " />
+            <p:inputMask id="cpf" value="#{usuarioMB.pessoa.cpf}" mask="999.999.999-99" validator="cpfValidator" required="true"/>
+            <p:outputLabel for="dtNasc" value="Data de Nascimento: " />
+            <p:calendar id="dtNasc" value="#{usuarioMB.pessoa.dtNasc}" pattern="dd/MM/yyyy" mask="true" required="true"/>
+            <p:outputLabel for="email" value="E-mail: " />
+            <p:inputText id="email" value="#{usuarioMB.pessoa.email}" required="true"/>
+            <p:outputLabel for="telefone" value="Telefone: " />
+            <p:inputMask id="telefone" value="#{usuarioMB.pessoa.telefone}" mask="(99) 9999-9999" required="true"/>
+            <p:outputLabel for="senha" value="Senha: " />
+            <p:password id="senha" value="#{usuarioMB.pessoa.senha}" feedback="true" match="senha2" required="true" />
+            <p:outputLabel for="senha2" value="Confirme: " />
+            <p:password id="senha2" value="#{usuarioMB.pessoa.senha}" required="true" />
+            <p:outputLabel for="permissao" value="Permissão: " />
+            <p:selectOneMenu id="permissao" value="#{usuarioMB.pessoa.permissao}" style="width:100%" required="true">
+            	<f:selectItem itemLabel="Administrador" itemValue="administrador" />
+            	<f:selectItem itemLabel="Avaliador" itemValue="V" />
+            </p:selectOneMenu>
+		</p:panelGrid>
+		<p:commandButton value="Salvar" actionListener="#{usuarioMB.salvarAlterar}" update=":pnListaUsuarioSistema :pnCadastroUsuarioSistema :pnBotoes">
+			<f:setPropertyActionListener value="false" target="#{usuarioMB.frmCadastro}" />
+			<f:setPropertyActionListener value="true" target="#{usuarioMB.frmLista}" />
+		</p:commandButton>
+	</fieldset>
+</div>
+</html>
+

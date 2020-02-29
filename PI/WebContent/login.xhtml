@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Login</title>
+	<link href="resources/css/login.css" rel="stylesheet" media="screen" />
+	<link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+
+</h:head>
+<h:body class="corpo">
+	<div class="container">
+		<div class="row-fluid">
+		
+		<center>
+        	<img src="http://reitoria.ifpr.edu.br/wp-content/themes/ifet_1.2/images/ifpr_logo.png"/>
+		</center>
+			
+			<div class="col-sm-6 col-md-4 col-md-offset-4" style="margin-top: 10%;" >
+				<form class="form-signin" action="j_spring_security_check" method="post">
+					<h:outputLabel value="Email"/>
+					<p:inputText id="j_username" type="text" styleClass="form-control input-login"/>
+					<h:outputLabel value="Senha"/>
+					<p:inputText id="j_password" type="password" styleClass="form-control input-login"  /> 
+					<h:commandButton value="Entrar" class="btn btn-lg btn-success btn-block"/> 
+					<a href="participanteCadastro.jsf" class="pull-right">É novo por aqui? Se inscreva!</a>
+				</form>
+			</div>
+			<center>
+				<h:outputText styleClass="col-md-6 col-md-offset-3 alert alert-danger" value="Usuário ou Senha Incorreto!" rendered="#{param.error==true}" />
+			</center>
+		</div>
+	</div>
+</h:body>
+</html>

@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:body>
+	<ui:composition template="/resources/template/template.xhtml">
+		<ui:define name="titulo">Cadastro de Submissão</ui:define>
+		<ui:define name="menu">
+			<ui:include src="/resources/template/menuUsuario.xhtml" />
+		</ui:define>
+		<ui:define name="corpo">
+
+			<h:form id="frmCadastroSubmissao" prependId="false"
+				enctype="multipart/form-data" style="border: none">
+
+				<div align="center">
+					<fieldset>
+
+						<legend>Cadastro de Submissão</legend>
+						<h:panelGrid columns="2"
+							columnClasses="ui-grid-col-4,ui-grid-col-8" layout="grid"
+							styleClass="ui-panelgrid-blank" style="width:90%">
+
+							<p:outputLabel for="atividade" value="Atividade Relacionada: " />
+							<p:autoComplete id="atividade"
+								value="#{submissaoMB.submissao.atividade}"
+								completeMethod="#{atividadeMB.completaAtividade}"
+								var="atividade" itemLabel="#{atividade.titulo}"
+								itemValue="#{atividade}" converter="atividadeConverter"
+								forceSelection="true" dropdown="true" required="true"
+								style="width:80%" />
+
+							<p:outputLabel for="tituloTrabalho" value="Titulo do Trabalho: " />
+							<p:inputText id="tituloTrabalho" value="#{submissaoMB.submissao.tituloTrabalho}" required="true" style="width:80%" />
+
+							<p:outputLabel for="uploadA" value="Arquivo: " />
+							<p:fileUpload id="uploadA" fileUploadListener="#{submissaoMB.pegaArquivo}" mode="advanced"
+								auto="true" sizeLimit="10485760" allowTypes="/(\.|\/)(pdf)$/" required="true" update="arquivoUp" style="width:80%" />
+
+							<p:outputLabel for="arquivoUp" value="Arquivo Upado: " />
+							<p:inputText id="arquivoUp" value="#{submissaoMB.resume.fileName}" required="true" disabled="true" style="width:80%" />
+						</h:panelGrid>
+
+						<br/>
+
+						<p:commandButton value="Submeter" actionListener="#{submissaoMB.salvarAlterar}" action="submissaoConfirmaCadAutor" styleClass="btn btn-success" onclick="PrimeFaces.monitorDownload(start, stop);"/>
+						
+						<p:commandButton value="Cancelar" actionListener="#{submissaoMB.iniciaMB}" action="submissao" styleClass="btn btn-success">
+						</p:commandButton>
+					</fieldset>
+				</div>
+
+			</h:form>
+
+			<p:dialog modal="true" widgetVar="statusDialog" header="Enviando" draggable="false" closable="false" resizable="false">
+				<p:graphicImage name="img/ajax-loader.gif" />
+			</p:dialog>
+
+			<script type="text/javascript">
+				function start() {
+    				PF('statusDialog').show();
+				}
+				function stop() {
+    				PF('statusDialog').hide();
+				}
+			</script>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
+		

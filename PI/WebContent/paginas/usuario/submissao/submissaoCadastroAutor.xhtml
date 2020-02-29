@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:body>
+	<ui:composition template="/resources/template/template.xhtml">
+		<ui:define name="titulo">Cadastro de Autores</ui:define>
+		<ui:define name="menu">
+			<ui:include src="/resources/template/menuUsuario.xhtml" />
+		</ui:define>
+		<ui:define name="corpo">
+
+		<h:form id="frmCadastroAutor">
+			<div align="center">
+				<fieldset>
+
+					<legend>Autor(es) do Trabalho</legend>
+					<p:dataTable id="tableAutor" var="autor" value="#{submissaoMB.listaAutor}" tableStyle="table-layout: auto" style="width: 90%">
+						<p:column headerText="Nome">
+							<h:outputText value="#{autor.nome}" />
+						</p:column>
+
+						<p:column headerText="Email">
+							<h:outputText value="#{autor.email}" />
+						</p:column>
+
+						<!-- 	BOTAO EXCLUIR -->
+						<p:column width="5%">
+							<p:commandButton id="btExclui" actionListener="#{submissaoMB.excluiAutor(autor)}" icon="ui-icon-trash" />
+						</p:column>
+
+					</p:dataTable>
+
+					<p:commandButton value="Adicionar Autor" oncomplete="PF('adicionaAutor').show()" styleClass="btn btn-success"/>
+
+					<p:separator />
+
+					<h:panelGrid id="submeter" columns="2" tableStyle="table-layout: auto">
+						<p:column>
+							<p:commandButton value="Submeter" actionListener="#{submissaoMB.chamaSalvarAutor}" action="submissao" styleClass="btn btn-success" />
+						</p:column>
+					
+						<p:column>
+							<p:commandButton value="Cancelar" actionListener="#{submissaoMB.iniciaMB}" action="submissao" styleClass="btn btn-success">
+							</p:commandButton>
+						</p:column>
+					
+					</h:panelGrid>
+					
+				</fieldset>
+			</div>
+			</h:form>
+
+			<p:dialog widgetVar="adicionaAutor" header="Adicionar Autor" modal="true" appendTo="@(body)" resizable="false" closeOnEscape="true">
+				<h:form id="formDialogCadastro">
+
+					<h:panelGrid columns="2" id="dialogF">
+						
+						<p:outputLabel value="Nome.:" />
+						<p:inputText id="nome" value="#{submissaoMB.autorN.nome}" required="true" />
+
+						<p:outputLabel value="Email.:" />
+						<p:inputText id="email" value="#{submissaoMB.autorN.email}" required="true" >
+							<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+						</p:inputText>
+
+					</h:panelGrid>
+					<br/>
+					<p:commandButton value="Adicionar" actionListener="#{submissaoMB.agregaAutorNovo()}"
+						oncomplete="if (!args.validationFailed) PF('adicionaAutor').hide()" update="frmCadastroAutor:tableAutor :formDialogCadastro" />
+				</h:form>
+			</p:dialog>
+
+
+	</ui:define>
+	</ui:composition>
+</h:body>
+</html>

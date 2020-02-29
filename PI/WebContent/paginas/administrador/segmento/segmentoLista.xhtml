@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<p:dataTable id="dtSegmento" var="obj" value="#{segmentoMB.listaSegmento}" emptyMessage="Sem registros cadastrados" paginator="true" paginatorPosition="bottom" rows="10">
+	<f:facet name="header">
+       Segmento Cadastrados
+     </f:facet>
+	<p:column headerText="Codigo">
+		<h:outputText id="id" value="#{obj.id}" />
+	</p:column>
+	<p:column headerText="Descricao">
+		<h:outputText id="descricao" value="#{obj.descricao}" />
+	</p:column>
+
+	<!-- 	BOTAO ALTERAR -->
+	<p:column width="5%">
+		<p:commandButton id="btAltera" icon="ui-icon-arrowrefresh-1-w" update=":pnCadastroSegmento :pnListaSegmento :pnBotoes">
+			<f:setPropertyActionListener value="#{obj}" target="#{segmentoMB.segmento}" />
+			<f:setPropertyActionListener value="true" target="#{segmentoMB.frmCadastro}" />
+			<f:setPropertyActionListener value="false" target="#{segmentoMB.frmLista}" />
+		</p:commandButton>
+	</p:column>
+
+	<!-- 	BOTAO EXCLUIR -->
+	<p:column width="5%">
+		<p:column width="5%">
+			<p:commandButton id="btExclui" actionListener="#{segmentoMB.excluir(obj)}" icon="ui-icon-trash" update=":frmListaSegmento">
+				<p:confirm header="Confirmar" message="Deseja realmente excluir?" icon="ui-icon-info" />
+			</p:commandButton>
+		</p:column>
+	</p:column>
+</p:dataTable>
+</html>
+
